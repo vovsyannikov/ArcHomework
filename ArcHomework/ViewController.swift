@@ -109,7 +109,6 @@ class ViewController: UIViewController {
             var indexToModify: Int!
             for (i, obj) in realm.objects(ToDo.self).enumerated() {
                 if obj == todo {
-                    print("Found \(obj) == \(todo)")
                     indexToModify = i
                     break
                 }
@@ -119,7 +118,6 @@ class ViewController: UIViewController {
         
         readFromRealm()
         self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
-//        self.tableView.reloadData()
     }
     
     func clearCompleted(){
