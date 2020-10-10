@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20CA45A4BA8DD0B0763B72DA /* Pods_ArcHomework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6020D1DF3BF1133018A77DBA /* Pods_ArcHomework.framework */; };
 		3C6BD0CB2531B99F0077353E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0CA2531B99F0077353E /* AppDelegate.swift */; };
 		3C6BD0CD2531B99F0077353E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0CC2531B99F0077353E /* SceneDelegate.swift */; };
 		3C6BD0CF2531B99F0077353E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0CE2531B99F0077353E /* ViewController.swift */; };
 		3C6BD0D22531B99F0077353E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D02531B99F0077353E /* Main.storyboard */; };
 		3C6BD0D42531B9A40077353E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D32531B9A40077353E /* Assets.xcassets */; };
 		3C6BD0D72531B9A40077353E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D52531B9A40077353E /* LaunchScreen.storyboard */; };
+		3C6BD0E32531BA9C0077353E /* BSWModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0E22531BA9C0077353E /* BSWModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,10 @@
 		3C6BD0D32531B9A40077353E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C6BD0D62531B9A40077353E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C6BD0D82531B9A40077353E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C6BD0E22531BA9C0077353E /* BSWModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSWModel.swift; sourceTree = "<group>"; };
+		4ED19E4D70784353990ED1C9 /* Pods-ArcHomework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.debug.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.debug.xcconfig"; sourceTree = "<group>"; };
+		6020D1DF3BF1133018A77DBA /* Pods_ArcHomework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcHomework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C64D29FCFEB924B49F3D75C7 /* Pods-ArcHomework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.release.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CA45A4BA8DD0B0763B72DA /* Pods_ArcHomework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +49,8 @@
 			children = (
 				3C6BD0C92531B99F0077353E /* ArcHomework */,
 				3C6BD0C82531B99F0077353E /* Products */,
+				83D8B21C46490CF0D0FAB30B /* Pods */,
+				413B83E4A6DCBE1449829FF5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +67,48 @@
 			children = (
 				3C6BD0CA2531B99F0077353E /* AppDelegate.swift */,
 				3C6BD0CC2531B99F0077353E /* SceneDelegate.swift */,
-				3C6BD0CE2531B99F0077353E /* ViewController.swift */,
+				3C6BD0E52531BAA30077353E /* Models */,
+				3C6BD0E02531BA760077353E /* ViewControllers */,
 				3C6BD0D02531B99F0077353E /* Main.storyboard */,
 				3C6BD0D32531B9A40077353E /* Assets.xcassets */,
 				3C6BD0D52531B9A40077353E /* LaunchScreen.storyboard */,
 				3C6BD0D82531B9A40077353E /* Info.plist */,
 			);
 			path = ArcHomework;
+			sourceTree = "<group>";
+		};
+		3C6BD0E02531BA760077353E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD0CE2531B99F0077353E /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3C6BD0E52531BAA30077353E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD0E22531BA9C0077353E /* BSWModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		413B83E4A6DCBE1449829FF5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6020D1DF3BF1133018A77DBA /* Pods_ArcHomework.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		83D8B21C46490CF0D0FAB30B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4ED19E4D70784353990ED1C9 /* Pods-ArcHomework.debug.xcconfig */,
+				C64D29FCFEB924B49F3D75C7 /* Pods-ArcHomework.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C6BD0DB2531B9A40077353E /* Build configuration list for PBXNativeTarget "ArcHomework" */;
 			buildPhases = (
+				009E96FE063FE5DBCC77052A /* [CP] Check Pods Manifest.lock */,
 				3C6BD0C32531B99F0077353E /* Sources */,
 				3C6BD0C42531B99F0077353E /* Frameworks */,
 				3C6BD0C52531B99F0077353E /* Resources */,
+				538C11786B61AEB296BB7A82 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +178,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		009E96FE063FE5DBCC77052A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ArcHomework-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		538C11786B61AEB296BB7A82 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ArcHomework/Pods-ArcHomework-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ArcHomework/Pods-ArcHomework-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ArcHomework/Pods-ArcHomework-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3C6BD0C32531B99F0077353E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -139,6 +227,7 @@
 			files = (
 				3C6BD0CF2531B99F0077353E /* ViewController.swift in Sources */,
 				3C6BD0CB2531B99F0077353E /* AppDelegate.swift in Sources */,
+				3C6BD0E32531BA9C0077353E /* BSWModel.swift in Sources */,
 				3C6BD0CD2531B99F0077353E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +372,7 @@
 		};
 		3C6BD0DC2531B9A40077353E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4ED19E4D70784353990ED1C9 /* Pods-ArcHomework.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -302,6 +392,7 @@
 		};
 		3C6BD0DD2531B9A40077353E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C64D29FCFEB924B49F3D75C7 /* Pods-ArcHomework.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
