@@ -9,31 +9,37 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let model = BSWModel()
-    @IBOutlet weak var tableView: UITableView!
+    var categories = [Category]()
+    var presenter: PresenterInput! = CategoryPresenter()
     
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateTableView()
-    }
-    
-    func updateTableView(){
-        model.loadCategories() { self.tableView.reloadData() }
+        presenter.output = self
+        presenter.loadCategories()
     }
 
 }
 
+extension ViewController: PresenterOutput {
+    func updateTableView(with categories: [Category]) {
+        self.categories = categories
+        self.tableView.reloadData()
+    }
+    
+}
+
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.categories.count
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Category") as! CategoryTableViewCell
         
-        let cat = model.categories[indexPath.row]
+        let cat = categories[indexPath.row]
         
         cell.nameLabel.text = cat.name
         
