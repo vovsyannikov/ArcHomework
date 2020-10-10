@@ -6,13 +6,12 @@
 //
 
 import UIKit
-import Bond
-import ReactiveKit
 
 class ViewController: UIViewController {
     
     let model = BSWModel()
     @IBOutlet weak var tableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +20,7 @@ class ViewController: UIViewController {
     }
     
     func updateTableView(){
-        model.loadCategories()
-        
+        model.loadCategories() { self.tableView.reloadData() }
     }
 
 }
@@ -38,7 +36,6 @@ extension ViewController: UITableViewDataSource{
         let cat = model.categories[indexPath.row]
         
         cell.nameLabel.text = cat.name
-        cell.sortOrderLabel.text = "\(cat.sortOrder)"
         
         return cell
     }
