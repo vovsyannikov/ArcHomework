@@ -76,7 +76,6 @@ func write(_ todo: ToDo, to realm: Realm) {
     }
 }
 
-//ToDo isActive toggle
 func toggle(_ todo: ToDo, from realm: Realm){
     try! realm.write {
         var indexToModify: Int!
