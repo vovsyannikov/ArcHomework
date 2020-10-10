@@ -46,6 +46,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="xFO-61-9VF"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="JTx-hE-8UC"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -58,6 +59,9 @@
                             <constraint firstItem="5fm-ej-5JD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jCd-ly-NnU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="5fm-ej-5JD" id="pit-HI-5ji"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

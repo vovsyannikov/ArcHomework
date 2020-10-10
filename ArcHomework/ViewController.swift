@@ -11,6 +11,11 @@ import RealmSwift
 class ToDo: Object{
     @objc dynamic var isActive: Bool
     @objc dynamic var task: String
+    var attributedTask: NSAttributedString {
+        isActive
+            ? fixedText(from: task)
+            : strikethroughText(from: task)
+    }
     
     required init(task: String, isActive: Bool) {
         self.task = task
@@ -22,14 +27,24 @@ class ToDo: Object{
         self.task = ""
         self.isActive = true
     }
+    
+    static func == (left: ToDo, right: ToDo) -> Bool {
+        return left.task == right.task && left.isActive == right.isActive
+    }
 }
 
-class ViewController: UIViewController {
 
+
+class ViewController: UIViewController {
+    
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     let realm = try! Realm()
     
     var todos = [ToDo]()
-
+    var completed = [ToDo]()
+    
     func testTodos(){
         try! realm.write{
             realm.deleteAll()
@@ -47,28 +62,45 @@ class ViewController: UIViewController {
     }
     
     func readFromRealm() {
+        todos = []
+        completed = []
+        
         for ob in realm.objects(ToDo.self) {
-            todos.append(ob)
+            switch  ob.isActive {
+            case true:
+                todos.append(ob)
+            case false:
+                completed.append(ob)
+            }
         }
     }
-
+    
+    func toggle(_ todo: ToDo){
+        try! realm.write {
+            var indexToModify = 10
+            for (i, obj) in realm.objects(ToDo.self).enumerated() {
+                if obj == todo {
+                    print("Found \(obj) == \(todo)")
+                    indexToModify = i
+                    break
+                }
+            }
+            realm.objects(ToDo.self)[indexToModify].isActive.toggle()
+        }
+        
+        readFromRealm()
+        self.tableView.reloadData()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        testTodos()
+        //        testTodos()
         readFromRealm()
         
         
     }
     
-    func countTodos(forActive isActive: Bool) -> Int{
-        var count = 0
-        for todo in todos where todo.isActive == isActive {
-            count += 1
-        }
-        return count
-    }
-
-
 }
 
 extension ViewController: UITableViewDataSource{
@@ -77,29 +109,43 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return todos[section].isActive ? "Активные" : "Завершенные"
+        return section == 0 ? "Активные" : "Завершенные"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        var count = 0
-        
-        if section == 0 {
-            count = countTodos(forActive: true)
-        } else {
-            count = countTodos(forActive: false)
-        }
-        
-        return count
+        return section == 0 ? todos.count : completed.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDo") as! ToDoTableViewCell
         
-        cell.nameLabel.text = todos[indexPath.section + indexPath.row].task
-    
+        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
+        
+        cell.nameLabel.attributedText = todo.attributedTask
+        
         return cell
     }
+    
+    
+}
 
+extension ViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
+        toggle(todo)
+        
+    }
+}
 
+func strikethroughText(from input: String) -> NSAttributedString {
+    let strikethroughAttribute = [NSAttributedString.Key.strikethroughStyle : NSUnderlineStyle.single.rawValue]
+    let resultingString = NSAttributedString(string: input, attributes: strikethroughAttribute)
+    
+    return resultingString
+}
+
+func fixedText(from input: String) -> NSAttributedString {
+    let result = NSAttributedString(string: input)
+    
+    return result
 }
