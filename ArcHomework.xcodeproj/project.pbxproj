@@ -14,7 +14,6 @@
 		3C6BD0D22531B99F0077353E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D02531B99F0077353E /* Main.storyboard */; };
 		3C6BD0D42531B9A40077353E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D32531B9A40077353E /* Assets.xcassets */; };
 		3C6BD0D72531B9A40077353E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D52531B9A40077353E /* LaunchScreen.storyboard */; };
-		3C6BD0E32531BA9C0077353E /* BSWModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0E22531BA9C0077353E /* BSWModel.swift */; };
 		3C6BD0EA2531C5390077353E /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0E92531C5390077353E /* CategoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +26,6 @@
 		3C6BD0D32531B9A40077353E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C6BD0D62531B9A40077353E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C6BD0D82531B9A40077353E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3C6BD0E22531BA9C0077353E /* BSWModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSWModel.swift; sourceTree = "<group>"; };
 		3C6BD0E92531C5390077353E /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		4ED19E4D70784353990ED1C9 /* Pods-ArcHomework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.debug.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.debug.xcconfig"; sourceTree = "<group>"; };
 		6020D1DF3BF1133018A77DBA /* Pods_ArcHomework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcHomework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +67,6 @@
 			children = (
 				3C6BD0CA2531B99F0077353E /* AppDelegate.swift */,
 				3C6BD0CC2531B99F0077353E /* SceneDelegate.swift */,
-				3C6BD0E52531BAA30077353E /* Models */,
 				3C6BD0E02531BA760077353E /* ViewControllers */,
 				3C6BD0D02531B99F0077353E /* Main.storyboard */,
 				3C6BD0E92531C5390077353E /* CategoryTableViewCell.swift */,
@@ -86,14 +83,6 @@
 				3C6BD0CE2531B99F0077353E /* ViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		3C6BD0E52531BAA30077353E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				3C6BD0E22531BA9C0077353E /* BSWModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		413B83E4A6DCBE1449829FF5 /* Frameworks */ = {
@@ -230,7 +219,6 @@
 				3C6BD0EA2531C5390077353E /* CategoryTableViewCell.swift in Sources */,
 				3C6BD0CF2531B99F0077353E /* ViewController.swift in Sources */,
 				3C6BD0CB2531B99F0077353E /* AppDelegate.swift in Sources */,
-				3C6BD0E32531BA9C0077353E /* BSWModel.swift in Sources */,
 				3C6BD0CD2531B99F0077353E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
