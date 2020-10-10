@@ -8,6 +8,7 @@
 import UIKit
 import RealmSwift
 
+//MARK: Класс задачи
 class ToDo: Object{
     @objc dynamic var isActive: Bool
     @objc dynamic var task: String
@@ -31,28 +32,40 @@ class ToDo: Object{
     static func == (left: ToDo, right: ToDo) -> Bool {
         return left.task == right.task && left.isActive == right.isActive
     }
+    
+    func strikethroughText(from input: String) -> NSAttributedString {
+        let strikethroughAttribute = [NSAttributedString.Key.strikethroughStyle : NSUnderlineStyle.single.rawValue]
+        let resultingString = NSAttributedString(string: input, attributes: strikethroughAttribute)
+        
+        return resultingString
+    }
+    
+    func fixedText(from input: String) -> NSAttributedString {
+        let result = NSAttributedString(string: input)
+        
+        return result
+    }
 }
 
-
-
+//MARK: ViewController
 class ViewController: UIViewController {
     
-    
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func clear(_ sender: Any) {
+        clearCompleted()
+    }
     
     let realm = try! Realm()
     
     var todos = [ToDo]()
     var completed = [ToDo]()
     
+    // Making test todos
     func testTodos(){
-        try! realm.write{
-            realm.deleteAll()
-        }
         
         todos.append(ToDo(task: "First Test", isActive: true))
-        todos.append(ToDo(task: "Second Test", isActive: false))
-        todos.append(ToDo(task: "Third Test", isActive: false))
+        completed.append(ToDo(task: "Second Test", isActive: false))
+        completed.append(ToDo(task: "Third Test", isActive: false))
         
         try! realm.write {
             for todo in self.todos{
@@ -61,6 +74,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: Realm funcs
     func readFromRealm() {
         todos = []
         completed = []
@@ -75,9 +89,24 @@ class ViewController: UIViewController {
         }
     }
     
+    func writeToRealm(_ todo: ToDo){
+        try! realm.write {
+            realm.add(todo)
+        }
+        switch todo.isActive {
+        case true:
+            todos.append(todo)
+        case false:
+            completed.append(todo)
+        }
+        
+        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
+    }
+    
+    //ToDo isActive toggle
     func toggle(_ todo: ToDo){
         try! realm.write {
-            var indexToModify = 10
+            var indexToModify: Int!
             for (i, obj) in realm.objects(ToDo.self).enumerated() {
                 if obj == todo {
                     print("Found \(obj) == \(todo)")
@@ -89,8 +118,28 @@ class ViewController: UIViewController {
         }
         
         readFromRealm()
-        self.tableView.reloadData()
+        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
+//        self.tableView.reloadData()
+    }
+    
+    func clearCompleted(){
+        var indexesToDelete: [IndexPath] = []
         
+        try! realm.write {
+            for (i, todo) in completed.enumerated(){
+                indexesToDelete.append(IndexPath(row: i, section: 1))
+                realm.delete(todo)
+            }
+            completed = []
+        }
+        
+        self.tableView.deleteRows(at: indexesToDelete, with: .automatic)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? CreateTodoViewController, segue.identifier == "CreateToDo"{
+            vc.delegate = self
+        }
     }
     
     override func viewDidLoad() {
@@ -98,11 +147,11 @@ class ViewController: UIViewController {
         //        testTodos()
         readFromRealm()
         
-        
     }
     
 }
 
+//MARK: UITableView extensions
 extension ViewController: UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -131,21 +180,18 @@ extension ViewController: UITableViewDataSource{
 
 extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row, indexPath.section)
+        print(todos, completed)
         let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
         toggle(todo)
         
     }
 }
 
-func strikethroughText(from input: String) -> NSAttributedString {
-    let strikethroughAttribute = [NSAttributedString.Key.strikethroughStyle : NSUnderlineStyle.single.rawValue]
-    let resultingString = NSAttributedString(string: input, attributes: strikethroughAttribute)
+extension ViewController: CreateTodoDelegate {
+    func created(_ todo: ToDo) {
+        writeToRealm(todo)
+    }
     
-    return resultingString
-}
-
-func fixedText(from input: String) -> NSAttributedString {
-    let result = NSAttributedString(string: input)
     
-    return result
 }
