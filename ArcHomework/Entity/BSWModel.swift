@@ -6,23 +6,6 @@
 //
 
 import Foundation
-import UIKit
-import SVProgressHUD
-
-struct Category {
-    let imageURL: String
-    let name: String
-    
-    init?(data: NSDictionary) {
-        guard let name = data["name"] as? String,
-        let imageURL = data["image"] as? String else {
-            return nil
-        }
-        
-        self.name = name
-        self.imageURL = imageURL
-    }
-}
 
 class BSWModel{
     var categories = [Category]()

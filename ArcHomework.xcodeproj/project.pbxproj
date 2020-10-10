@@ -16,6 +16,10 @@
 		3C6BD0D72531B9A40077353E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C6BD0D52531B9A40077353E /* LaunchScreen.storyboard */; };
 		3C6BD0E32531BA9C0077353E /* BSWModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0E22531BA9C0077353E /* BSWModel.swift */; };
 		3C6BD0EA2531C5390077353E /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD0E92531C5390077353E /* CategoryTableViewCell.swift */; };
+		3C6BD1032532079A0077353E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD1022532079A0077353E /* Category.swift */; };
+		3C6BD106253207DE0077353E /* CategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD105253207DE0077353E /* CategoryPresenter.swift */; };
+		3C6BD1092532083C0077353E /* CategoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD1082532083C0077353E /* CategoryInteractor.swift */; };
+		3C6BD10C253208990077353E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD10B253208990077353E /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		3C6BD0D82531B9A40077353E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6BD0E22531BA9C0077353E /* BSWModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSWModel.swift; sourceTree = "<group>"; };
 		3C6BD0E92531C5390077353E /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		3C6BD1022532079A0077353E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		3C6BD105253207DE0077353E /* CategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPresenter.swift; sourceTree = "<group>"; };
+		3C6BD1082532083C0077353E /* CategoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInteractor.swift; sourceTree = "<group>"; };
+		3C6BD10B253208990077353E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4ED19E4D70784353990ED1C9 /* Pods-ArcHomework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.debug.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.debug.xcconfig"; sourceTree = "<group>"; };
 		6020D1DF3BF1133018A77DBA /* Pods_ArcHomework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcHomework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64D29FCFEB924B49F3D75C7 /* Pods-ArcHomework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.release.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,8 +77,11 @@
 			children = (
 				3C6BD0CA2531B99F0077353E /* AppDelegate.swift */,
 				3C6BD0CC2531B99F0077353E /* SceneDelegate.swift */,
-				3C6BD0E52531BAA30077353E /* Models */,
 				3C6BD0E02531BA760077353E /* ViewControllers */,
+				3C6BD0FF253206FE0077353E /* Interactor */,
+				3C6BD1002532070E0077353E /* Presenter */,
+				3C6BD0E52531BAA30077353E /* Entity */,
+				3C6BD101253207290077353E /* Router */,
 				3C6BD0D02531B99F0077353E /* Main.storyboard */,
 				3C6BD0E92531C5390077353E /* CategoryTableViewCell.swift */,
 				3C6BD0D32531B9A40077353E /* Assets.xcassets */,
@@ -88,12 +99,37 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3C6BD0E52531BAA30077353E /* Models */ = {
+		3C6BD0E52531BAA30077353E /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				3C6BD0E22531BA9C0077353E /* BSWModel.swift */,
+				3C6BD1022532079A0077353E /* Category.swift */,
 			);
-			path = Models;
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		3C6BD0FF253206FE0077353E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD1082532083C0077353E /* CategoryInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		3C6BD1002532070E0077353E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD105253207DE0077353E /* CategoryPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		3C6BD101253207290077353E /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD10B253208990077353E /* Router.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		413B83E4A6DCBE1449829FF5 /* Frameworks */ = {
@@ -227,11 +263,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C6BD106253207DE0077353E /* CategoryPresenter.swift in Sources */,
 				3C6BD0EA2531C5390077353E /* CategoryTableViewCell.swift in Sources */,
 				3C6BD0CF2531B99F0077353E /* ViewController.swift in Sources */,
 				3C6BD0CB2531B99F0077353E /* AppDelegate.swift in Sources */,
+				3C6BD10C253208990077353E /* Router.swift in Sources */,
+				3C6BD1092532083C0077353E /* CategoryInteractor.swift in Sources */,
 				3C6BD0E32531BA9C0077353E /* BSWModel.swift in Sources */,
 				3C6BD0CD2531B99F0077353E /* SceneDelegate.swift in Sources */,
+				3C6BD1032532079A0077353E /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
