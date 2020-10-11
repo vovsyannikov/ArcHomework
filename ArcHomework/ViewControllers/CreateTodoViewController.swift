@@ -7,14 +7,10 @@
 
 import UIKit
 
-protocol CreateTodoDelegate{
-    func created(_ todo: ToDo)
-}
-
 class CreateTodoViewController: UIViewController {
     
     @IBOutlet weak var nameTextfield: UITextField!
-    var delegate: CreateTodoDelegate?
+    var presenter: CreateTodoPresenterInput = CreateTodoPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +18,11 @@ class CreateTodoViewController: UIViewController {
     }
 
     @IBAction func save(_ sender: Any) {
-        let todo = ToDo(task: nameTextfield.text!.isEmpty ? "Новая задача" : nameTextfield.text!, isActive: true)
+        presenter.newTodo(from:
+                            nameTextfield.text!.isEmpty ?
+                            "Новая задача" :
+                            nameTextfield.text!)
         
-        self.delegate?.created(todo)
         dismiss(animated: true, completion: nil)
     }
 }

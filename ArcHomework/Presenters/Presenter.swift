@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PresenterInput {
     var output: PresenterOutput! { get set }
+    var vc: ViewController! { get set }
     
     func createToDo()
     func readToDos()
-    
 }
 
 protocol PresenterOutput {
@@ -20,24 +21,25 @@ protocol PresenterOutput {
 }
 
 class Presenter: PresenterInput{
-    
     var output: PresenterOutput!
+    var vc: ViewController!
     
     var interactor: InteractorInput! = Interactor()
     var router: RouterInput! = Router()
     
     func readToDos() {
-        interactor.read()
+        interactor.read(for: vc)
     }
     func createToDo() {
-        router.present(CreateTodoViewController())
+        router.output = self
+        router.present(vc, sender: self)
     }
         
 }
 
 extension Presenter: InteractorOutput, RouterOutput{
     func created(_ todo: ToDo) {
-        print("\(todo)")
+        interactor.write(todo, for: vc)
     }
     
     func cleared(_ indexPath: [IndexPath]) {

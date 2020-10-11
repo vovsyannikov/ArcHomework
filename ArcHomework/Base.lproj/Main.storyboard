@@ -64,7 +64,6 @@
                             <barButtonItem style="plain" systemItem="add" id="9PP-uW-xkF">
                                 <connections>
                                     <action selector="createNewTodo:" destination="BYZ-38-t0r" id="1yI-xR-Uhe"/>
-                                    <segue destination="h52-sa-LNO" kind="presentation" identifier="CreateToDo" id="zyP-oO-VP8"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem style="plain" systemItem="trash" id="Pgd-12-Xwv">
@@ -86,13 +85,13 @@
         <!--Create Todo View Controller-->
         <scene sceneID="2zl-8Y-Uba">
             <objects>
-                <viewController id="h52-sa-LNO" customClass="CreateTodoViewController" customModule="ArcHomework" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateToDo" id="h52-sa-LNO" customClass="CreateTodoViewController" customModule="ArcHomework" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WSE-AD-Hmc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="0gL-Vg-l7n">
-                                <rect key="frame" x="15" y="30" width="384" height="72"/>
+                                <rect key="frame" x="15" y="74" width="384" height="72"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZLE-Hu-Qsj">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="34"/>

@@ -20,11 +20,13 @@ class ViewController: UIViewController {
     
     @IBAction func createNewTodo(_ sender: Any) {
         presenter.createToDo()
+        self.tableView.reloadData()
     }
-    let presenter: PresenterInput! = Presenter()
+    private var presenter: PresenterInput! = Presenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.vc = self
         presenter.readToDos()
     }
     

@@ -11,11 +11,10 @@ import RealmSwift
 protocol InteractorInput {
     var output: InteractorOutput! { get set }
     
-    func read()
-    func write(_ todo: ToDo)
-    func toggle(_ todo: ToDo)
-    func clear()
-    
+    func read(for vc: ViewController)
+    func write(_ todo: ToDo, for vc: ViewController )
+    func toggle(_ todo: ToDo, for vc: ViewController)
+    func clear(for vc: ViewController)
 }
 
 protocol InteractorOutput {
@@ -27,7 +26,7 @@ class Interactor: InteractorInput{
     
     private let realm = try! Realm()
     
-    func read() {
+    func read(for vc: ViewController) {
         todos = []
         completed = []
         
@@ -41,7 +40,7 @@ class Interactor: InteractorInput{
         }
     }
     
-    func write(_ todo: ToDo) {
+    func write(_ todo: ToDo, for vc: ViewController) {
         try! realm.write {
             realm.add(todo)
         }
@@ -51,9 +50,11 @@ class Interactor: InteractorInput{
         case false:
             completed.append(todo)
         }
+        
+        vc.tableView.reloadData()
     }
     
-    func toggle(_ todo: ToDo) {
+    func toggle(_ todo: ToDo, for vc: ViewController) {
         try! realm.write {
             var indexToModify: Int!
             for (i, obj) in realm.objects(ToDo.self).enumerated() {
@@ -65,10 +66,10 @@ class Interactor: InteractorInput{
             realm.objects(ToDo.self)[indexToModify].isActive.toggle()
         }
         
-        read()
+        read(for: vc)
     }
     
-    func clear() {
+    func clear(for vc: ViewController) {
         var indexesToDelete: [IndexPath] = []
         
         try! realm.write {

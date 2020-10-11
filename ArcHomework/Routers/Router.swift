@@ -11,7 +11,8 @@ import UIKit
 protocol RouterInput {
     var output: RouterOutput! { get set }
     
-    func present(_ vc: UIViewController)
+    func present(_ vc: UIViewController, sender: PresenterInput)
+    func createdNew(_ todo: ToDo)
 }
 
 protocol RouterOutput {
@@ -21,9 +22,17 @@ protocol RouterOutput {
 class Router: RouterInput{
     var output: RouterOutput!
     
-    func present(_ vc: UIViewController) {
+    func present(_ vc: UIViewController, sender: PresenterInput) {
+        let createVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CreateToDo") as! CreateTodoViewController
         
+        let newPresenter = createVC.presenter as! CreateTodoPresenter
+        newPresenter.router.output = sender as! Presenter
+        
+        vc.present(createVC, animated: true) { createVC.viewDidLoad() }
     }
     
+    func createdNew(_ todo: ToDo) {
+        output.created(todo)
+    }
     
 }
