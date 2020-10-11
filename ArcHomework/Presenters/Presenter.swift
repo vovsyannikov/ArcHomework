@@ -14,6 +14,8 @@ protocol PresenterInput {
     
     func createToDo()
     func readToDos()
+    func toggle(_ todo: ToDo)
+    func clearCompleted()
 }
 
 protocol PresenterOutput {
@@ -28,11 +30,20 @@ class Presenter: PresenterInput{
     var router: RouterInput! = Router()
     
     func readToDos() {
-        interactor.read(for: vc)
+        interactor.read()
     }
     func createToDo() {
         router.output = self
         router.present(vc, sender: self)
+    }
+    
+    func toggle(_ todo: ToDo) {
+        interactor.toggle(todo, for: vc)
+    }
+    
+    func clearCompleted() {
+        interactor.output = self
+        interactor.clear()
     }
         
 }

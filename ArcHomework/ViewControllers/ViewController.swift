@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func clear(_ sender: Any) {
-//        presenter.clearCompleted()
+        presenter.clearCompleted()
     }
     
     @IBAction func createNewTodo(_ sender: Any) {
@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.vc = self
+        presenter.output = self
         presenter.readToDos()
     }
     
@@ -59,14 +60,14 @@ extension ViewController: UITableViewDataSource{
     
 }
 
-//extension ViewController: UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
-//        presenter.toggle(todo)
-//        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
-//    }
-//}
+extension ViewController: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
+        presenter.toggle(todo)
+        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
+    }
+}
 
 extension ViewController: PresenterOutput{
     func updated(_ indexPath: [IndexPath]) {
