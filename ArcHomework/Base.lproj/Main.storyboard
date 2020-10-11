@@ -63,6 +63,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="plain" systemItem="add" id="9PP-uW-xkF">
                                 <connections>
+                                    <action selector="createNewTodo:" destination="BYZ-38-t0r" id="1yI-xR-Uhe"/>
                                     <segue destination="h52-sa-LNO" kind="presentation" identifier="CreateToDo" id="zyP-oO-VP8"/>
                                 </connections>
                             </barButtonItem>

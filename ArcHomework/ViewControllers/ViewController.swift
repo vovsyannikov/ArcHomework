@@ -15,22 +15,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func clear(_ sender: Any) {
-        let indexesToDelete = clearCompleted(from: realm)
-        self.tableView.deleteRows(at: indexesToDelete, with: .automatic)
+//        presenter.clearCompleted()
     }
     
-    let realm = try! Realm()
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? CreateTodoViewController, segue.identifier == "CreateToDo"{
-            vc.delegate = self
-        }
+    @IBAction func createNewTodo(_ sender: Any) {
+        presenter.createToDo()
     }
+    let presenter: PresenterInput! = Presenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        read(from: realm)
-        
+        presenter.readToDos()
     }
     
 }
@@ -62,18 +57,17 @@ extension ViewController: UITableViewDataSource{
     
 }
 
-extension ViewController: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
-        toggle(todo, from: realm)
-        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
-    }
-}
+//extension ViewController: UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
+//        presenter.toggle(todo)
+//        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
+//    }
+//}
 
-extension ViewController: CreateTodoDelegate {
-    func created(_ todo: ToDo) {
-        write(todo, to: realm)
-        self.tableView.reloadData()
+extension ViewController: PresenterOutput{
+    func updated(_ indexPath: [IndexPath]) {
+        self.tableView.deleteRows(at: indexPath, with: .automatic)
     }
 }

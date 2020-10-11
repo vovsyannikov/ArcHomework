@@ -16,6 +16,9 @@
 		3C6BD11725321F7F0077353E /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */; };
 		3C6BD12125323EA40077353E /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD12025323EA40077353E /* CreateTodoViewController.swift */; };
 		3C6BD12625324B8F0077353E /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD12525324B8F0077353E /* ToDoModel.swift */; };
+		3C6BD137253253CA0077353E /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD136253253CA0077353E /* Interactor.swift */; };
+		3C6BD13B253253EF0077353E /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD13A253253EF0077353E /* Presenter.swift */; };
+		3C6BD143253254380077353E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD142253254380077353E /* Router.swift */; };
 		4297EFCA1055C31611CCF6E4 /* Pods_ArcHomework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D971739549853314CA7536C8 /* Pods_ArcHomework.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,8 +32,11 @@
 		3C6BD0D62531B9A40077353E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C6BD0D82531B9A40077353E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
-		3C6BD12025323EA40077353E /* CreateTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTodoViewController.swift; path = ArcHomework/CreateTodoViewController.swift; sourceTree = SOURCE_ROOT; };
+		3C6BD12025323EA40077353E /* CreateTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTodoViewController.swift; path = ArcHomework/ViewControllers/CreateTodoViewController.swift; sourceTree = SOURCE_ROOT; };
 		3C6BD12525324B8F0077353E /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
+		3C6BD136253253CA0077353E /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Interactor.swift; path = ArcHomework/Interactor.swift; sourceTree = "<group>"; };
+		3C6BD13A253253EF0077353E /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		3C6BD142253254380077353E /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		794ECFA88B5E0BFA959892C7 /* Pods-ArcHomework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.release.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.release.xcconfig"; sourceTree = "<group>"; };
 		B2772DFB96A8CB017D02DF14 /* Pods-ArcHomework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.debug.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.debug.xcconfig"; sourceTree = "<group>"; };
 		D971739549853314CA7536C8 /* Pods_ArcHomework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcHomework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,16 +77,60 @@
 			children = (
 				3C6BD0CA2531B99F0077353E /* AppDelegate.swift */,
 				3C6BD0CC2531B99F0077353E /* SceneDelegate.swift */,
-				3C6BD0CE2531B99F0077353E /* ViewController.swift */,
-				3C6BD12525324B8F0077353E /* ToDoModel.swift */,
-				3C6BD12025323EA40077353E /* CreateTodoViewController.swift */,
+				3C6BD133253253580077353E /* ViewControllers */,
+				3C6BD135253253960077353E /* Interactors */,
+				3C6BD139253253D50077353E /* Presenters */,
+				3C6BD13E253254060077353E /* Entities */,
+				3C6BD141253254280077353E /* Routers */,
 				3C6BD0D02531B99F0077353E /* Main.storyboard */,
-				3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */,
 				3C6BD0D32531B9A40077353E /* Assets.xcassets */,
 				3C6BD0D52531B9A40077353E /* LaunchScreen.storyboard */,
 				3C6BD0D82531B9A40077353E /* Info.plist */,
 			);
 			path = ArcHomework;
+			sourceTree = "<group>";
+		};
+		3C6BD133253253580077353E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD0CE2531B99F0077353E /* ViewController.swift */,
+				3C6BD12025323EA40077353E /* CreateTodoViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3C6BD135253253960077353E /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD136253253CA0077353E /* Interactor.swift */,
+			);
+			name = Interactors;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		3C6BD139253253D50077353E /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD13A253253EF0077353E /* Presenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		3C6BD13E253254060077353E /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD12525324B8F0077353E /* ToDoModel.swift */,
+				3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		3C6BD141253254280077353E /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				3C6BD142253254380077353E /* Router.swift */,
+			);
+			path = Routers;
 			sourceTree = "<group>";
 		};
 		8E164880A4AFF62286B3CCA0 /* Frameworks */ = {
@@ -216,9 +266,12 @@
 			files = (
 				3C6BD0CF2531B99F0077353E /* ViewController.swift in Sources */,
 				3C6BD0CB2531B99F0077353E /* AppDelegate.swift in Sources */,
+				3C6BD13B253253EF0077353E /* Presenter.swift in Sources */,
 				3C6BD0CD2531B99F0077353E /* SceneDelegate.swift in Sources */,
+				3C6BD143253254380077353E /* Router.swift in Sources */,
 				3C6BD12625324B8F0077353E /* ToDoModel.swift in Sources */,
 				3C6BD12125323EA40077353E /* CreateTodoViewController.swift in Sources */,
+				3C6BD137253253CA0077353E /* Interactor.swift in Sources */,
 				3C6BD11725321F7F0077353E /* ToDoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
