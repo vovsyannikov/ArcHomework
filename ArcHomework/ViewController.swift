@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func clear(_ sender: Any) {
-        viewModel.clearCompleted() { [weak self] indexesToDelete in  self?.tableView.deleteRows(at: indexesToDelete, with: .automatic) }
+        viewModel.clearCompleted() { [unowned self] indexesToDelete in  tableView.deleteRows(at: indexesToDelete, with: .automatic) }
         
     }
     
@@ -66,12 +66,12 @@ extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let todo = indexPath.section == 0 ? viewModel.todos[indexPath.row] : viewModel.completed[indexPath.row]
-        viewModel.toggle(todo) { [weak self] in self?.tableView.reloadSections(IndexSet(0...1), with: .automatic) }
+        viewModel.toggle(todo) { tableView.reloadSections(IndexSet(0...1), with: .automatic) }
     }
 }
 
 extension ViewController: CreateTodoDelegate {
     func created(_ todo: ToDo) {
-        viewModel.write(todo) { [weak self] in self?.tableView.reloadData() }
+        viewModel.write(todo) { [unowned self] in tableView.reloadData() }
     }
 }
