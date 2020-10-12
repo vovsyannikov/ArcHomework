@@ -17,8 +17,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func clear(_ sender: Any) {
-        let indexesToDelete = viewModel.clearCompleted()
-        self.tableView.deleteRows(at: indexesToDelete, with: .automatic)
+        viewModel.clearCompleted() { [weak self] indexesToDelete in  self?.tableView.deleteRows(at: indexesToDelete, with: .automatic) }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,14 +66,12 @@ extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let todo = indexPath.section == 0 ? viewModel.todos[indexPath.row] : viewModel.completed[indexPath.row]
-        viewModel.toggle(todo)
-        self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
+        viewModel.toggle(todo) { [weak self] in self?.tableView.reloadSections(IndexSet(0...1), with: .automatic) }
     }
 }
 
 extension ViewController: CreateTodoDelegate {
     func created(_ todo: ToDo) {
-        viewModel.write(todo)
-        self.tableView.reloadData()
+        viewModel.write(todo) { [weak self] in self?.tableView.reloadData() }
     }
 }

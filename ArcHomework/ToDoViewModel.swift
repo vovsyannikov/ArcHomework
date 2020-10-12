@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 class ToDoViewModel{
     let realm = try! Realm()
@@ -29,7 +30,7 @@ class ToDoViewModel{
         }
     }
     
-    func write(_ todo: ToDo) {
+    func write(_ todo: ToDo, completion: @escaping ( () -> Void ) ) {
         try! realm.write {
             realm.add(todo)
         }
@@ -39,9 +40,11 @@ class ToDoViewModel{
         case false:
             completed.append(todo)
         }
+        
+        completion()
     }
     
-    func toggle(_ todo: ToDo){
+    func toggle(_ todo: ToDo, completion: @escaping ( () -> Void )){
         try! realm.write {
             var indexToModify: Int!
             for (i, obj) in realm.objects(ToDo.self).enumerated() {
@@ -54,9 +57,10 @@ class ToDoViewModel{
         }
         
         read()
+        completion()
     }
     
-    func clearCompleted() -> [IndexPath]{
+    func clearCompleted(completion: @escaping ( ([IndexPath]) -> Void ) ) {
         var indexesToDelete: [IndexPath] = []
         
         try! realm.write {
@@ -67,6 +71,6 @@ class ToDoViewModel{
             completed = []
         }
         
-        return indexesToDelete
+        completion(indexesToDelete)
     }
 }
