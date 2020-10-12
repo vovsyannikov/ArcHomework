@@ -8,9 +8,6 @@
 import Foundation
 import RealmSwift
 
-var todos = [ToDo]()
-var completed = [ToDo]()
-
 class ToDo: Object{
     @objc dynamic var isActive: Bool
     @objc dynamic var task: String

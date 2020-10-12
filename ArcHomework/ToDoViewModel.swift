@@ -8,59 +8,65 @@
 import Foundation
 import RealmSwift
 
-
-//MARK: Realm funcs
-func read(from realm: Realm) {
-    todos = []
-    completed = []
+class ToDoViewModel{
+    let realm = try! Realm()
     
-    for ob in realm.objects(ToDo.self) {
-        switch  ob.isActive {
-        case true:
-            todos.append(ob)
-        case false:
-            completed.append(ob)
-        }
-    }
-}
-
-func write(_ todo: ToDo, to realm: Realm) {
-    try! realm.write {
-        realm.add(todo)
-    }
-    switch todo.isActive {
-    case true:
-        todos.append(todo)
-    case false:
-        completed.append(todo)
-    }
-}
-
-func toggle(_ todo: ToDo, from realm: Realm){
-    try! realm.write {
-        var indexToModify: Int!
-        for (i, obj) in realm.objects(ToDo.self).enumerated() {
-            if obj == todo {
-                indexToModify = i
-                break
+    var todos = [ToDo]()
+    var completed = [ToDo]()
+    
+    //MARK: Realm funcs
+    func read() {
+        todos = []
+        completed = []
+        
+        for ob in realm.objects(ToDo.self) {
+            switch  ob.isActive {
+            case true:
+                todos.append(ob)
+            case false:
+                completed.append(ob)
             }
         }
-        realm.objects(ToDo.self)[indexToModify].isActive.toggle()
     }
     
-    read(from: realm)
-}
-
-func clearCompleted(from realm: Realm) -> [IndexPath]{
-    var indexesToDelete: [IndexPath] = []
-    
-    try! realm.write {
-        for (i, todo) in completed.enumerated(){
-            indexesToDelete.append(IndexPath(row: i, section: 1))
-            realm.delete(todo)
+    func write(_ todo: ToDo) {
+        try! realm.write {
+            realm.add(todo)
         }
-        completed = []
+        switch todo.isActive {
+        case true:
+            todos.append(todo)
+        case false:
+            completed.append(todo)
+        }
     }
     
-    return indexesToDelete
+    func toggle(_ todo: ToDo){
+        try! realm.write {
+            var indexToModify: Int!
+            for (i, obj) in realm.objects(ToDo.self).enumerated() {
+                if obj == todo {
+                    indexToModify = i
+                    break
+                }
+            }
+            realm.objects(ToDo.self)[indexToModify].isActive.toggle()
+        }
+        
+        read()
+    }
+    
+    func clearCompleted() -> [IndexPath]{
+        var indexesToDelete: [IndexPath] = []
+        
+        try! realm.write {
+            for (i, todo) in completed.enumerated(){
+                indexesToDelete.append(IndexPath(row: i, section: 1))
+                realm.delete(todo)
+            }
+            completed = []
+        }
+        
+        return indexesToDelete
+    }
 }

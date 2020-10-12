@@ -12,14 +12,14 @@ import RealmSwift
 //MARK: ViewController
 class ViewController: UIViewController {
     
+    let viewModel = ToDoViewModel()
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBAction func clear(_ sender: Any) {
-        let indexesToDelete = clearCompleted(from: realm)
+        let indexesToDelete = viewModel.clearCompleted()
         self.tableView.deleteRows(at: indexesToDelete, with: .automatic)
     }
-    
-    let realm = try! Realm()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? CreateTodoViewController, segue.identifier == "CreateToDo"{
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        read(from: realm)
+        viewModel.read()
         
     }
     
@@ -46,13 +46,13 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? todos.count : completed.count
+        return section == 0 ? viewModel.todos.count : viewModel.completed.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDo") as! ToDoTableViewCell
         
-        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
+        let todo = indexPath.section == 0 ? viewModel.todos[indexPath.row] : viewModel.completed[indexPath.row]
         
         cell.nameLabel.attributedText = todo.attributedTask
         
@@ -65,15 +65,15 @@ extension ViewController: UITableViewDataSource{
 extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let todo = indexPath.section == 0 ? todos[indexPath.row] : completed[indexPath.row]
-        toggle(todo, from: realm)
+        let todo = indexPath.section == 0 ? viewModel.todos[indexPath.row] : viewModel.completed[indexPath.row]
+        viewModel.toggle(todo)
         self.tableView.reloadSections(IndexSet(0...1), with: .automatic)
     }
 }
 
 extension ViewController: CreateTodoDelegate {
     func created(_ todo: ToDo) {
-        write(todo, to: realm)
+        viewModel.write(todo)
         self.tableView.reloadData()
     }
 }
