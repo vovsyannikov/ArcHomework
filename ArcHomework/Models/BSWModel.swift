@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import SVProgressHUD
 
 struct Category {
     let imageURL: String
