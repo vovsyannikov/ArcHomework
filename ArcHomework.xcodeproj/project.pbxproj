@@ -16,6 +16,7 @@
 		3C6BD11725321F7F0077353E /* ToDoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */; };
 		3C6BD12125323EA40077353E /* CreateTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD12025323EA40077353E /* CreateTodoViewController.swift */; };
 		3C6BD12625324B8F0077353E /* ToDoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BD12525324B8F0077353E /* ToDoModel.swift */; };
+		3C9934BC253489D20025EDD5 /* ToDoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9934BB253489D20025EDD5 /* ToDoViewModel.swift */; };
 		4297EFCA1055C31611CCF6E4 /* Pods_ArcHomework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D971739549853314CA7536C8 /* Pods_ArcHomework.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTableViewCell.swift; sourceTree = "<group>"; };
 		3C6BD12025323EA40077353E /* CreateTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateTodoViewController.swift; path = ArcHomework/CreateTodoViewController.swift; sourceTree = SOURCE_ROOT; };
 		3C6BD12525324B8F0077353E /* ToDoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoModel.swift; sourceTree = "<group>"; };
+		3C9934BB253489D20025EDD5 /* ToDoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoViewModel.swift; sourceTree = "<group>"; };
 		794ECFA88B5E0BFA959892C7 /* Pods-ArcHomework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.release.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.release.xcconfig"; sourceTree = "<group>"; };
 		B2772DFB96A8CB017D02DF14 /* Pods-ArcHomework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArcHomework.debug.xcconfig"; path = "Target Support Files/Pods-ArcHomework/Pods-ArcHomework.debug.xcconfig"; sourceTree = "<group>"; };
 		D971739549853314CA7536C8 /* Pods_ArcHomework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ArcHomework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 				3C6BD0CC2531B99F0077353E /* SceneDelegate.swift */,
 				3C6BD0CE2531B99F0077353E /* ViewController.swift */,
 				3C6BD12525324B8F0077353E /* ToDoModel.swift */,
+				3C9934BB253489D20025EDD5 /* ToDoViewModel.swift */,
 				3C6BD12025323EA40077353E /* CreateTodoViewController.swift */,
 				3C6BD0D02531B99F0077353E /* Main.storyboard */,
 				3C6BD11625321F7F0077353E /* ToDoTableViewCell.swift */,
@@ -219,6 +222,7 @@
 				3C6BD0CD2531B99F0077353E /* SceneDelegate.swift in Sources */,
 				3C6BD12625324B8F0077353E /* ToDoModel.swift in Sources */,
 				3C6BD12125323EA40077353E /* CreateTodoViewController.swift in Sources */,
+				3C9934BC253489D20025EDD5 /* ToDoViewModel.swift in Sources */,
 				3C6BD11725321F7F0077353E /* ToDoTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
